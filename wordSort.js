@@ -11,13 +11,8 @@ ordering = ['b', 'c', 'a']
 Output: False
 */
 
+// This solution only checks for first letter of word
 const isArraySorted = (wordList, orderList) => {
-  // keep track of currentLetter encountered in orderList
-  // iterate through wordList
-  // if nextLetter in wordList is not the same as currentLetter
-    // check if nextLetter === currentLetter + 1
-      // if true, currentLetter = orderList[currentLetterIdx + 1]
-      // if false, return false
   let tempIndex, orderIndex = 0;
   let currentLetter = orderList[orderIndex];
   for (let i = 0; i < wordList.length; i++) {
