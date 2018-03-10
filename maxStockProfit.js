@@ -18,5 +18,15 @@ No "shorting"—you must buy before you sell. You may not buy and sell in the sa
 */
 
 const maxStockProfit = (priceList) => {
-  
+  let minPrice = priceList[0], maxProfit = null;
+  for (let i = 0; i < priceList.length; i++) {
+    const price = priceList[i];
+    if (maxProfit === null || price - minPrice > maxProfit) {
+      maxProfit = price - minPrice;
+    }
+    if (minPrice > price) {
+      minPrice = price;
+    }
+  }
+  return maxProfit;
 };
