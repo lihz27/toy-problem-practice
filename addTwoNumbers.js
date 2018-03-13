@@ -18,6 +18,55 @@ function ListNode(val) {
 
 */
 
-const addTwoNumbers = (l1, l2) => {
+/*
+// convert linked lists into strings then numbers
+// add numbers together and convert sum to string
+// starting at end of string, create linked list of numbers
 
+const convertToString = (l, str) => {
+  if (l !== null) {
+    const num = l.val;
+    str = num.toString() + str;
+    return convertToString(l.next, str);
+  }
+  return str;
+};
+
+const addTwoNumbers = (l1, l2) => {
+  const string1 = convertToString(l1, '');
+  const string2 = convertToString(l2, '');
+  let sum = Number(string1) + Number(string2);
+  sum = sum.toString();
+  let sumList = new ListNode(Number(sum[sum.length - 1]));
+  let pointer = sumList;
+  let i = sum.length - 2;
+  while(i >= 0) {
+    pointer.next = new ListNode(Number(sum[i]));
+    pointer = pointer.next;
+    i--;
+  }
+  return sumList;
+};
+*/
+
+const addTwoNumbers = (l1, l2) => {
+  let sumList = new ListNode();
+  let a = l1, b = l2, add = 0, l = sumList;
+  while (a !== null || b !== null) {
+    let x = (a !== null) ? a.val : 0;
+    let y = (b !== null) ? b.val : 0;
+    let sum = add + x + y;
+    add = Math.floor(sum / 10);
+    l.val = sum % 10;
+    if ((a && a.next) || (b && b.next)) {
+      l.next = new ListNode();
+      l = l.next;
+    }
+    a = (a !== null) ? a.next : null;
+    b = (b !== null) ? b.next : null;
+  }
+  if (add > 0) {
+    l.next = new ListNode(add);
+  }
+  return sumList;
 };
