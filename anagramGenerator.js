@@ -14,8 +14,9 @@ const anagramGenerator = (word, anagram = '', anagrams = []) => {
   }
 
   for (let i = 0; i < word.length; i++) {
+    const firstLetter = word[i];
     const remainingChars = word.slice(0, i) + word.slice(i + 1);
-    anagramServer(remainingChars, anagram + word[i], anagrams);
+    anagramServer(remainingChars, anagram + firstLetter, anagrams);
   }
 
   return anagrams;
