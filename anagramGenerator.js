@@ -16,8 +16,45 @@ const anagramGenerator = (word, anagram = '', anagrams = []) => {
   for (let i = 0; i < word.length; i++) {
     const firstLetter = word[i];
     const remainingChars = word.slice(0, i) + word.slice(i + 1);
-    anagramServer(remainingChars, anagram + firstLetter, anagrams);
+    anagramGenerator(remainingChars, anagram + firstLetter, anagrams);
   }
 
   return anagrams;
 };
+
+/*
+// Heap's Algorithm method
+const swap = (letters, i, j) => {
+  const temp = letters[i];
+  letters[i] = letters[j];
+  letters[j] = temp;
+};
+
+const anagramGenerator = (word) => {
+  const letters = word.split(''),
+        length = word.length,
+        anagrams = [],
+        tracking = {};
+
+  for (let i = 0; i < length; i++) {
+    tracking[i] = 0;
+  }
+
+  anagrams.push(word);
+  let j = 0;
+  while (j < length) {
+    if (tracking[j] < j) {
+      let swapNum = j % 2 === 1 ? tracking[j] : 0;
+      swap(letters, swapNum, j);
+      tracking[j]++;
+      j = 0;
+      anagrams.push(letters.join(''));
+    } else {
+      tracking[j] = 0;
+      j++
+    }
+  }
+
+  return anagrams;
+}
+*/
