@@ -12,7 +12,7 @@ const leftRotation = (array, rotation) => {
   if (rotation === null || array.length === 0) {
     return null;
   }
-  if (rotation % array.length === 0) {
+  if (rotation === array.length) {
     return array;
   }
   const indexShift = array.length - rotation;
