@@ -12,5 +12,29 @@ ransomNote('two times three is not four', 'two times two is four');   // no
 */
 
 const ransomNote = (mag, note) => {
-
+  const magHash = {}, noteHash = {};
+  for (let i = 0; i < mag.length; i++) {
+    if (magHash[mag[i]]) {
+      magHash[mag[i]] += 1;
+    } else {
+      magHash[mag[i]] = 1;
+    }
+  }
+  for (let i = 0; i < note.length; i++) {
+    if (noteHash[note[i]]) {
+      noteHash[note[i]] += 1;
+    } else {
+      noteHash[note[i]] = 1;
+    }
+  }
+  let counter = 0;
+  for (let key in noteHash) {
+    counter++;
+    if (magHash[key]) {
+      if (magHash[key] < noteHash[key]) {
+        return 'no';
+      }
+    }
+  }
+  return 'yes';
 };
