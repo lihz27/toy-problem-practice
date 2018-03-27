@@ -8,33 +8,35 @@ NOTES:
 - The words in the note and magazine are case-sensitive.
 
 ransomNote('give me one grand today night', 'give one grand today');  // yes
-ransomNote('two times three is not four', 'two times two is four');   // no
+ransomNote('two times three is not four', 'Two times is four');   // no
 */
 
 const ransomNote = (mag, note) => {
   const magHash = {}, noteHash = {};
-  for (let i = 0; i < mag.length; i++) {
-    if (magHash[mag[i]]) {
-      magHash[mag[i]] += 1;
+  const magArray = mag.split(' ');
+  const noteArray = note.split(' ');
+  for (let i = 0; i < magArray.length; i++) {
+    if (magHash[magArray[i]]) {
+      magHash[magArray[i]] += 1;
     } else {
-      magHash[mag[i]] = 1;
+      magHash[magArray[i]] = 1;
     }
   }
-  for (let i = 0; i < note.length; i++) {
-    if (noteHash[note[i]]) {
-      noteHash[note[i]] += 1;
+  for (let i = 0; i < noteArray.length; i++) {
+    if (noteHash[noteArray[i]]) {
+      noteHash[noteArray[i]] += 1;
     } else {
-      noteHash[note[i]] = 1;
+      noteHash[noteArray[i]] = 1;
     }
   }
   let counter = 0;
   for (let key in noteHash) {
     counter++;
-    if (magHash[key]) {
-      if (magHash[key] < noteHash[key]) {
-        return 'no';
-      }
+    if ((typeof magHash[key] !== 'undefined') || (magHash[key] < noteHash[key])) {
+      return 'No';
     }
   }
-  return 'yes';
+  return 'Yes';
 };
+
+console.log(ransomNote('two times three is not four', 'Two times is four'));
