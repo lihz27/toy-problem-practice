@@ -1,5 +1,5 @@
 /*
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+Given a sorted array of integers, return indices of the two numbers such that they add up to a specific target.
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
@@ -20,8 +20,10 @@ const twoSum = (nums, target) => {
       }
     }
     return undefined;
-    // Solution is in O(n^2). Takes care of some negative numbers in nums array
+    // Solution is in O(n^2) time and O(1) space. Takes care of some negative numbers in nums array
   */
+
+  /*
   const hash = {};
   for (let i = 0; i < nums.length; i++) {
     hash[nums[i]] = i;
@@ -33,4 +35,27 @@ const twoSum = (nums, target) => {
     }
   }
   return [];
+  // Solution is in O(n) time and O(n) space.
+  */
+
+  let idx1 = 0;
+  let idx2 = nums.length - 1;
+  let p1 = nums[idx1];
+  let p2 = nums[idx2];
+  if (nums[idx1] > target) {
+    return [];
+  }
+  for (let i = 0; i < nums.length; i++) {
+    if ((p1 + p2) > target) {
+      idx2--;
+      p2 = nums[idx2];
+    } else if ((p1 + p2) < target) {
+      idx1++;
+      p1 = nums[idx1];
+    } else {
+      return [idx1, idx2];
+    }
+  }
+  return [];
+  // Solution is in O(n) time and O(1) space.
 };
