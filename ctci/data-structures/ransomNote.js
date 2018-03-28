@@ -32,11 +32,9 @@ const ransomNote = (mag, note) => {
   let counter = 0;
   for (let key in noteHash) {
     counter++;
-    if ((typeof magHash[key] !== 'undefined') || (magHash[key] < noteHash[key])) {
+    if ((typeof magHash[key] === 'undefined') || (magHash[key] < noteHash[key])) {
       return 'No';
     }
   }
   return 'Yes';
 };
-
-console.log(ransomNote('two times three is not four', 'Two times is four'));
