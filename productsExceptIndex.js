@@ -14,5 +14,16 @@ NOTE: Do not use division in your solution.
 */
 
 const productsExceptIndex = (array) => {
-
+  const products = [];
+  for (let i = 0; i < array.length; i++) {
+    let newArray = array.slice();
+    newArray.splice(i, 1);
+    products[i] = 1;
+    for (let j = 0; j < newArray.length; j++) {
+      products[i] *= newArray[j];
+    }
+  }
+  return products;
 };
+
+console.log(productsExceptIndex([1, 7, 3, 4]));
