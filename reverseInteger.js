@@ -16,17 +16,13 @@ Output: 21
 */
 
 const reverseInteger = (integer) => {
-  const intString = '' + integer;
+  const intString = integer.toString();
   const intSplit = intString.split('');
   let toReverse = intSplit.slice();
-  let prepend = '';
-  if (intSplit[0] === '-') {
+  let sign = Math.sign(integer);
+  if (sign < 0) {
     toReverse.splice(0, 1);
-    prepend += '-';
   }
   const reversedInt = toReverse.reverse().join('');
-  if (prepend === '-') {
-    return Number(-(reversedInt));
-  }
-  return Number(reversedInt);
+  return Number(reversedInt) * sign;
 };
