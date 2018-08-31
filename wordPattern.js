@@ -6,5 +6,10 @@ Output: 'crane'
 */
 
 const wordPattern = (words, pattern) => {
-
+  // can use RegEx here
+  const matches = [];
+  const regexPattern = new RegExp(pattern, 'gi');
+  return words.filter(word => word.match(regexPattern))
 };
+
+// console.log(wordPattern(['crane', 'drain', 'refrain'], 'an'))
