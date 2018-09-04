@@ -38,7 +38,7 @@ const mergeTrees = (t1, t2) => {
       return baseTree
     } else if (baseNode === null && node !== null) {
       orig[side] = node
-    } else {
+    } else if (node !== null) {
       baseNode.value += node.value
       DFS(node.left, baseNode.left, baseNode, 'left')
       DFS(node.right, baseNode.right, baseNode, 'right')
@@ -58,4 +58,4 @@ t2.left = new Tree(1)
 t2.right = new Tree(3)
 t2.left.right = new Tree(4)
 t2.right.right = new Tree(7)
-mergeTrees(t1, t2)
+console.log(mergeTrees(t1, t2))
